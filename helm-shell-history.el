@@ -55,6 +55,7 @@
               grep-commands
               "\\sed 's/^: [0-9]*:[0-9];//'"))))
 
+;;;###autoload
 (defun helm-shell-history ()
   "Display command line history from your history file that you ware specified
 at `helm-shell-history-file'"
