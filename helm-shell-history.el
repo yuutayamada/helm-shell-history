@@ -56,15 +56,15 @@
               "\\sed 's/^: [0-9]*:[0-9];//'"))))
 
 (defvar helm-c-shell-history
-  '(((name . "helm-shell-history")
-     (candidates-process . (lambda ()
-                             (funcall helm-shell-history-process)))
-     (multiline)
-     (nohighlight)
-     (candidates-in-buffer)
-     (action . (lambda (line)
-                 (term-send-raw-string line)))
-     (delayed))))
+  '((name . "helm-shell-history")
+    (candidates-process . (lambda ()
+                            (funcall helm-shell-history-process)))
+    (multiline)
+    (nohighlight)
+    (candidates-in-buffer)
+    (action . (lambda (line)
+                (term-send-raw-string line)))
+    (delayed)))
 
 ;;;###autoload
 (defun helm-shell-history ()
