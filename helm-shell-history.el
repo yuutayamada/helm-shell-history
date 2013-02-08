@@ -77,7 +77,6 @@ at `helm-shell-history-file'"
             (funcall helm-shell-history-command
                      helm-pattern)))))
     (helm :sources helm-c-shell-history
-          :requires-pattern 3
           :candidate-number-limit 50
           :candidates-in-buffer t
           :input-idle-delay 0.3
