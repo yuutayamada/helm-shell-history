@@ -59,7 +59,6 @@
   '((name . "helm-shell-history")
     (candidates-process . (lambda ()
                             (funcall helm-shell-history-process)))
-    (multiline)
     (nohighlight)
     (candidates-in-buffer)
     (action . (lambda (line)
