@@ -55,6 +55,16 @@
               grep-commands
               "\\sed 's/^: [0-9]*:[0-9];//'"))))
 
+(defvar helm-c-shell-history
+  '(((name . "helm-shell-history")
+     (candidates-process . (lambda ()
+                             (funcall helm-shell-history-process)))
+     (multiline)
+     (nohighlight)
+     (action . (lambda (line)
+                 (term-send-raw-string line)))
+     (delayed))))
+
 ;;;###autoload
 (defun helm-shell-history ()
   "Display command line history from your history file that you ware specified
@@ -66,15 +76,7 @@ at `helm-shell-history-file'"
             "helm-shell-history-process" nil "/bin/sh" "-c"
             (funcall helm-shell-history-command
                      helm-pattern)))))
-    (helm :sources
-          `(((name . "helm-shell-history")
-             (candidates-process . (lambda ()
-                                     (funcall helm-shell-history-process)))
-             (multiline)
-             (nohighlight)
-             (action . (lambda (line)
-                         (term-send-raw-string line)))
-             (delayed)))
+    (helm :sources helm-c-shell-history
           :requires-pattern 3
           :candidate-number-limit 50
           :candidates-in-buffer t
