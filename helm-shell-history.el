@@ -6,7 +6,7 @@
 ;; Author: Yuta Yamada <cokesboy"at"gmail.com>
 ;; URL: https://github.com/yuutayamada/helm-shell-history
 ;; Version: 0.0.1
-;; Package-Requires: ()
+;; Package-Requires: ((helm "20130208.1156"))
 ;; Keywords: helm
 
 ;;; License:
