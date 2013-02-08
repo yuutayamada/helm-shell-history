@@ -34,6 +34,7 @@
 
 (eval-when-compile (require 'cl))
 (require 'helm)
+(require 'term nil t)
 
 (defvar helm-shell-history-file
   (replace-regexp-in-string
@@ -62,8 +63,14 @@
     (nohighlight)
     (candidates-in-buffer)
     (action . (lambda (line)
-                (term-send-raw-string line)))
+                (funcall helm-shell-history-action-function line)))
     (delayed)))
+
+(defvar helm-shell-history-action-function
+  (lambda (line)
+    (case major-mode
+      (term-mode (term-send-raw-string line))
+      (t         (insert line)))))
 
 ;;;###autoload
 (defun helm-shell-history ()
