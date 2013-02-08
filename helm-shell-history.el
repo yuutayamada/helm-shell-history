@@ -37,8 +37,7 @@
 (require 'term nil t)
 
 (defvar helm-shell-history-file
-  (replace-regexp-in-string
-   "\n$" "" (shell-command-to-string "echo $HISTFILE"))
+  (shell-command-to-string "echo -n $HISTFILE")
   "Specify your the history filepath of bash or zsh etc.
  By default it is specified variable of $HISTFILE")
 
