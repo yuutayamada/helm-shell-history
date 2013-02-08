@@ -8,15 +8,15 @@ This program is thing that it find shell history by helm.
 ## Commentary(Japanese):
 このプログラムはhelm.elを使ってshell historyを表示するものです。
 
-## how to install(Emacs 24 User)
-You can install from M-x `list-packages' command.
+<!-- ## how to install(Emacs 24 User) -->
+<!-- You can install from M-x `list-packages' command. -->
 
-## how to install(otherwise)
+<!-- ## how to install(otherwise) -->
+## how to install
 You can install that is used git:
     mkdir -p ~/.emacs.d/packages/
     cd ~/.emacs.d/packages/
-    git clone git@github.com:yuutayamada/helm-shell-history.git
-
+    git clone https://github.com/emacsmirror/helm-shell-history.git
 ## configuration for Emacs
 this is example for multi-term.el
 
