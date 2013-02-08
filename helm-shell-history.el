@@ -77,7 +77,6 @@ at `helm-shell-history-file'"
             (funcall helm-shell-history-command
                      helm-pattern)))))
     (helm :sources helm-c-shell-history
-          :candidate-number-limit 50
           :input-idle-delay 0.3
           :prompt "shell command: "
           :buffer "*helm shell history*")))
