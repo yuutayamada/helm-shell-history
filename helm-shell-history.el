@@ -61,6 +61,7 @@
                              (funcall helm-shell-history-process)))
      (multiline)
      (nohighlight)
+     (candidates-in-buffer)
      (action . (lambda (line)
                  (term-send-raw-string line)))
      (delayed))))
@@ -78,7 +79,6 @@ at `helm-shell-history-file'"
                      helm-pattern)))))
     (helm :sources helm-c-shell-history
           :candidate-number-limit 50
-          :candidates-in-buffer t
           :input-idle-delay 0.3
           :prompt "shell command: "
           :buffer "*helm shell history*")))
