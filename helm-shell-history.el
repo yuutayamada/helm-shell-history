@@ -46,8 +46,8 @@
     (let*
         ((patterns (split-string pattern))
          (create-grep-command
-          (lambda (candidates)
-            (loop for candidate in candidates
+          (lambda (minibuffer-patterns)
+            (loop for candidate in minibuffer-patterns
                   collect (concat "\\grep -E -e \"" candidate "\" | "))))
          (grep-commands
           (mapconcat 'identity (funcall create-grep-command patterns) "")))
