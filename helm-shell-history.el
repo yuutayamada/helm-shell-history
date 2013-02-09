@@ -47,8 +47,8 @@
         ((patterns (split-string pattern))
          (create-grep-command
           (lambda (minibuffer-patterns)
-            (loop for candidate in minibuffer-patterns
-                  collect (concat "\\grep -E -e \"" candidate "\" | "))))
+            (loop for search-word in minibuffer-patterns
+                  collect (concat "\\grep -E -e \"" search-word "\" | "))))
          (grep-commands
           (mapconcat 'identity (funcall create-grep-command patterns) "")))
       (concat "\\tac " helm-shell-history-file " | "
