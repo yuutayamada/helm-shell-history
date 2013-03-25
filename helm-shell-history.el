@@ -53,7 +53,8 @@
           (mapconcat 'identity (funcall create-grep-command patterns) "")))
       (concat "\\tac " helm-shell-history-file " | "
               grep-commands
-              "\\sed 's/^: [0-9]*:[0-9];//'"))))
+              "\\sed 's/^: [0-9]*:[0-9];//'")))
+  "You can specify your favorite command line")
 
 (defvar helm-c-shell-history
   '((name . "helm-shell-history")
