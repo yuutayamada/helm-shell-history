@@ -11,9 +11,11 @@ Find shell history by helm
 <!-- ## how to install(otherwise) -->
 ## Installation
 You can install that is used git:
+
     mkdir -p ~/.emacs.d/packages/
     cd ~/.emacs.d/packages/
     git clone https://github.com/emacsmirror/helm-shell-history.git
+    
 ## Configuration for Emacs
 below code is example for multi-term.el
 
