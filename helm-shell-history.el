@@ -23,14 +23,15 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Commentary:
-;; WIP
-
 ;;; Usage:
-;; WIP
+;; To find shell-history, you can use `M-x helm-shell-history' command
 
 ;;; Preference setting:
-;; WIP
+;; (add-to-list 'load-path "path/to/this/package")
+;; (require 'helm-shell-history)
+;; (add-hook 'term-mode-hook
+;;           (lambda ()
+;;             (define-key term-raw-map (kbd "C-r") 'helm-shell-history)))
 
 (eval-when-compile (require 'cl))
 (require 'helm)
