@@ -1,4 +1,4 @@
-;;; helm-shell-history.el --- find shell history from helm
+;;; helm-shell-history.el --- find shell history from helm -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2012, 2015 by Yuta Yamada
 
