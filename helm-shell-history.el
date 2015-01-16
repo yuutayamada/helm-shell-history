@@ -34,6 +34,7 @@
 ;;; Code:
 (require 'helm)
 (require 'term nil t)
+(require 'cl-lib)
 
 (defvar helm-shell-history-file
   (shell-command-to-string "echo -n $HISTFILE")
@@ -46,8 +47,8 @@ By default it is specified variable of $HISTFILE")
         ((patterns (split-string pattern))
          (create-grep-command
           (lambda (minibuffer-patterns)
-            (loop for search-word in minibuffer-patterns
-                  collect (concat "\\grep -E -e \"" search-word "\" | "))))
+            (cl-loop for search-word in minibuffer-patterns
+                     collect (concat "\\grep -E -e \"" search-word "\" | "))))
          (grep-commands
           (mapconcat 'identity (funcall create-grep-command patterns) "")))
       (concat "\\tac " helm-shell-history-file " | "
@@ -67,7 +68,7 @@ By default it is specified variable of $HISTFILE")
 
 (defvar helm-shell-history-action-function
   (lambda (line)
-    (case major-mode
+    (cl-case major-mode
       (term-mode (term-send-raw-string line))
       (t         (insert line)))))
 
