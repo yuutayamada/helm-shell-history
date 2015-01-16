@@ -1,7 +1,6 @@
-;;; -*- coding: utf-8 mode: emacs-lisp -*-
 ;;; helm-shell-history.el --- find shell history from helm
 
-;; Copyright (C) 2012 by Yuta Yamada
+;; Copyright (C) 2012, 2015 by Yuta Yamada
 
 ;; Author: Yuta Yamada <cokesboy"at"gmail.com>
 ;; URL: https://github.com/yuutayamada/helm-shell-history
@@ -23,7 +22,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Usage:
+;;; Commentary:
 ;; To find shell-history, you can use `M-x helm-shell-history' command
 
 ;;; Preference setting:
@@ -32,15 +31,14 @@
 ;; (add-hook 'term-mode-hook
 ;;           (lambda ()
 ;;             (define-key term-raw-map (kbd "C-r") 'helm-shell-history)))
-
-(eval-when-compile (require 'cl))
+;;; Code:
 (require 'helm)
 (require 'term nil t)
 
 (defvar helm-shell-history-file
   (shell-command-to-string "echo -n $HISTFILE")
   "Specify your the history filepath of bash or zsh etc.
- By default it is specified variable of $HISTFILE")
+By default it is specified variable of $HISTFILE")
 
 (defvar helm-shell-history-command
   (lambda (pattern)
@@ -55,7 +53,7 @@
       (concat "\\tac " helm-shell-history-file " | "
               grep-commands
               "\\sed 's/^: [0-9]*:[0-9];//'")))
-  "You can specify your favorite command line")
+  "You can specify your favorite command line.")
 
 (defvar helm-c-shell-history
   '((name . "helm-shell-history")
@@ -75,8 +73,8 @@
 
 ;;;###autoload
 (defun helm-shell-history ()
-  "Display command line history from your history file that you ware specified
-at `helm-shell-history-file'"
+  "Display command line history from history file.
+You can specify at `helm-shell-history-file'."
   (interactive)
   (let ((helm-shell-history-process
          (lambda ()
@@ -89,5 +87,10 @@ at `helm-shell-history-file'"
           :buffer "*helm shell history*")))
 
 (provide 'helm-shell-history)
+
+;; Local Variables:
+;; coding: utf-8
+;; mode: emacs-lisp
+;; End:
 
 ;;; helm-shell-history.el ends here
