@@ -59,7 +59,10 @@ By default it is specified variable of $HISTFILE")
 (defvar helm-c-shell-history
   '((name . "helm-shell-history")
     (candidates-process . (lambda ()
-                            (funcall helm-shell-history-process)))
+                            (start-process
+                             "helm-shell-history-process" nil "/bin/sh" "-c"
+                             (funcall helm-shell-history-command
+                                      helm-pattern))))
     (nohighlight)
     (candidates-in-buffer)
     (action . (lambda (line)
@@ -77,15 +80,9 @@ By default it is specified variable of $HISTFILE")
   "Display command line history from history file.
 You can specify at `helm-shell-history-file'."
   (interactive)
-  (let ((helm-shell-history-process
-         (lambda ()
-           (start-process
-            "helm-shell-history-process" nil "/bin/sh" "-c"
-            (funcall helm-shell-history-command
-                     helm-pattern)))))
-    (helm :sources helm-c-shell-history
-          :prompt "shell command: "
-          :buffer "*helm shell history*")))
+  (helm :sources helm-c-shell-history
+        :prompt "shell command: "
+        :buffer "*helm shell history*"))
 
 (provide 'helm-shell-history)
 
