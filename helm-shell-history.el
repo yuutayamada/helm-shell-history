@@ -43,18 +43,21 @@ By default it is specified variable of $HISTFILE")
 
 (defvar helm-shell-history-command
   (lambda (pattern)
-    (let*
-        ((patterns (split-string pattern))
-         (create-grep-command
-          (lambda (minibuffer-patterns)
-            (cl-loop for search-word in minibuffer-patterns
-                     collect (concat "\\grep -E -e \"" search-word "\" | "))))
-         (grep-commands
-          (mapconcat 'identity (funcall create-grep-command patterns) "")))
-      (concat "\\tac " helm-shell-history-file " | "
-              grep-commands
-              "\\sed 's/^: [0-9]*:[0-9];//'")))
-  "You can specify your favorite command line.")
+    (let* ((patterns (split-string pattern))
+           (grep (when (string< "" pattern)
+                   (helm-shell-history-make-grep-command patterns))))
+      (mapconcat 'identity (delq nil
+                                 `(,(concat "\\tac " helm-shell-history-file)
+                                   ,grep
+                                   "\\sed 's/^: [0-9]*:[0-9];//'"))
+                 " | "))))
+
+(defun helm-shell-history-make-grep-command (patterns)
+  "Return grep command form PATTERNS."
+  (cl-loop with cmd = "\\grep -E -e "
+           for search-word in patterns
+           collect (concat cmd " \"" search-word "\" ") into result
+           finally return (mapconcat 'identity result " | ")))
 
 (defvar helm-c-shell-history
   '((name . "helm-shell-history")
